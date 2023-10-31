@@ -1,6 +1,8 @@
 package br.com.prjagendamvc.view;
 
 import br.com.prjagendamvc.controller.PessoaController;
+import br.com.prjagendamvc.model.IValidacaoEmail;
+import br.com.prjagendamvc.model.ValidaEmailAdapter;
 import javax.swing.JOptionPane;
 
 /**
@@ -145,6 +147,8 @@ public class CadastrarContatoView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        IValidacaoEmail valida = new ValidaEmailAdapter();        
+        
         // Coleta informações inputadas
         String nome = inputNome.getText();
         String celular = inputCelular.getText();
@@ -155,8 +159,8 @@ public class CadastrarContatoView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preecha todas as informações", "Erro", 0);
             return;
         }
-        
-        if (!pessoa.validaEmail(email))
+                
+        if (!valida.validaEmail(email))
         {
             JOptionPane.showMessageDialog(null, "Informe um e-mail valido", "Erro", 0);
             return;

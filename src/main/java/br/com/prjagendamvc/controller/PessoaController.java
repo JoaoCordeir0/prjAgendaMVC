@@ -1,7 +1,9 @@
 package br.com.prjagendamvc.controller;
 
+import br.com.prjagendamvc.model.IValidacaoEmail;
 import br.com.prjagendamvc.model.ListaContatos;
 import br.com.prjagendamvc.model.Pessoa;
+import br.com.prjagendamvc.model.ValidaEmailAdapter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JTable;
@@ -83,16 +85,5 @@ public class PessoaController
             return ListaContatos.getInstance().get(ListaContatos.getInstance().size() - 1).getId() + 1;
         }        
         return 1;
-    }
-    
-    public static boolean validaEmail(String email)
-    {
-       String expression = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
-                            + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-       
-       Pattern pattern = Pattern.compile(expression);
-       Matcher matcher = pattern.matcher(email);
-       
-       return matcher.matches();
-    }     
+    }      
 }
