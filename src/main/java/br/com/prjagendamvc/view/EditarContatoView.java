@@ -1,8 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.com.prjagendamvc.view;
+
+import br.com.prjagendamvc.controller.PessoaController;
+import br.com.prjagendamvc.model.ListaContatos;
+import br.com.prjagendamvc.model.Pessoa;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,6 +11,8 @@ package br.com.prjagendamvc.view;
  */
 public class EditarContatoView extends javax.swing.JFrame {
 
+    PessoaController pessoa = new PessoaController();
+    
     /**
      * Creates new form CadastrarView
      */
@@ -33,15 +36,15 @@ public class EditarContatoView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         inputID = new javax.swing.JTextField();
         inputNome = new javax.swing.JTextField();
-        inputTelefone = new javax.swing.JFormattedTextField();
+        inputCelular = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        inputEmail = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        inputIDBusca = new javax.swing.JTextField();
+        btnBuscaContato = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,7 +66,7 @@ public class EditarContatoView extends javax.swing.JFrame {
         });
 
         try {
-            inputTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # ####-####")));
+            inputCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # ####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -80,11 +83,11 @@ public class EditarContatoView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(inputTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inputCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
+                        .addComponent(inputEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -109,21 +112,36 @@ public class EditarContatoView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(inputTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Salvar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar contato"));
 
         jLabel6.setText("ID:");
 
-        jButton3.setText("Pesquisar");
+        btnBuscaContato.setText("Pesquisar");
+        btnBuscaContato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaContatoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -133,9 +151,9 @@ public class EditarContatoView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputIDBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btnBuscaContato)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -144,8 +162,8 @@ public class EditarContatoView extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(inputIDBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscaContato))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -191,6 +209,51 @@ public class EditarContatoView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputIDActionPerformed
 
+    private void btnBuscaContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaContatoActionPerformed
+        int id = Integer.parseInt(inputIDBusca.getText());
+        
+        int index = pessoa.buscaContato(id);
+        
+        if (index != -1)
+        {
+            Pessoa contato = ListaContatos.getInstance().get(index);
+            
+            inputID.setText(String.valueOf(contato.getId()));
+            inputNome.setText(contato.getNome());
+            inputCelular.setText(contato.getCelular());
+            inputEmail.setText(contato.getEmail());
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Nenhum contato encontrato com o ID: " + id, "Aviso", 0);
+            inputID.setText("");
+            inputNome.setText("");
+            inputCelular.setText("");
+            inputEmail.setText("");
+        }
+    }//GEN-LAST:event_btnBuscaContatoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int id = Integer.parseInt(inputIDBusca.getText());
+        String nome = inputNome.getText();
+        String celular = inputCelular.getText();
+        String email = inputEmail.getText();
+        
+        if (pessoa.atualizaContato(id, nome, celular, email))
+        {
+            this.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Contato atualizado!", "Sucesso", 1);
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar", "Erro", 0);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -228,12 +291,14 @@ public class EditarContatoView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscaContato;
+    private javax.swing.JFormattedTextField inputCelular;
+    private javax.swing.JTextField inputEmail;
     private javax.swing.JTextField inputID;
+    private javax.swing.JTextField inputIDBusca;
     private javax.swing.JTextField inputNome;
-    private javax.swing.JFormattedTextField inputTelefone;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -242,7 +307,5 @@ public class EditarContatoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

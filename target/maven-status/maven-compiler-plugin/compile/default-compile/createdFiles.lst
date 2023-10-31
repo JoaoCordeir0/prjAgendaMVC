@@ -1,6 +1,12 @@
 br\com\prjagendamvc\controller\PessoaController.class
+br\com\prjagendamvc\view\ListarContatos$3.class
+br\com\prjagendamvc\view\MenuPrincipalView$5.class
+br\com\prjagendamvc\view\EditarContatoView$4.class
 br\com\prjagendamvc\view\MenuPrincipalView$1.class
-br\com\prjagendamvc\model\ListaContatos.class
+br\com\prjagendamvc\view\ListarContatos$2.class
 br\com\prjagendamvc\model\Pessoa.class
-br\com\prjagendamvc\view\MenuPrincipalView$2.class
 br\com\prjagendamvc\view\MenuPrincipalView.class
+br\com\prjagendamvc\model\ListaContatos.class
+br\com\prjagendamvc\view\MenuPrincipalView$2.class
+br\com\prjagendamvc\view\MenuPrincipalView$4.class
+br\com\prjagendamvc\view\EditarContatoView$3.class

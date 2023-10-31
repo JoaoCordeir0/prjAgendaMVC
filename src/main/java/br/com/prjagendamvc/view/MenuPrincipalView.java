@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.com.prjagendamvc.view;
 
 /**
@@ -43,9 +39,19 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         jMenuBar1.add(jMenuCadastrar);
 
         jMenuListar.setText("Listar");
+        jMenuListar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuListarMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenuListar);
 
         jMenuEditar.setText("Editar");
+        jMenuEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuEditarMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenuEditar);
 
         jMenuExit.setText("Sair");
@@ -79,6 +85,14 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     private void jMenuCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCadastrarMouseClicked
         (new CadastrarView()).setVisible(true);
     }//GEN-LAST:event_jMenuCadastrarMouseClicked
+
+    private void jMenuListarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuListarMouseClicked
+        (new ListarContatos()).setVisible(true);
+    }//GEN-LAST:event_jMenuListarMouseClicked
+
+    private void jMenuEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuEditarMouseClicked
+        (new EditarContatoView()).setVisible(true);
+    }//GEN-LAST:event_jMenuEditarMouseClicked
 
     /**
      * @param args the command line arguments
